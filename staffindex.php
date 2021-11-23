@@ -48,33 +48,39 @@ $user_data = check_login($con);
 </div>
 
   <!-- modal for update -->
-  <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update user</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="mb-3">
-              <label for="regno" class="form-label">Register Number</label>
-              <input type="Number"  class="form-control" id="regnoupdate" aria-describedby="emailHelp">
-      </div>
-            <label for="username" class="form-label">Username</label>
-              <input type="text" name="username" class="form-control" id="usernameupdate" aria-describedby="emailHelp">
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control" id="passwordupdate">
+
+
+
+      <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+           
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update user</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <input type="hidden" id="hiddenupdateid">
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="modal-body">
+            <div class="mb-3">
+                    <label for="regno" class="form-label">Register Number</label>
+                    <input type="Number"  class="form-control" id="regnoupdate" aria-describedby="emailHelp">
+            </div>
+                  <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="usernameupdate" aria-describedby="emailHelp">
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="passwordupdate">
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <input type="hidden" id="hiddenupdateid">
+            </div>
+            
+          </div>
+        </div>
+        </div>
+ 
 
 <!-- navbar and body of page -->
 
@@ -193,11 +199,11 @@ $user_data = check_login($con);
         $('#usernameupdate').val(userid.username);
         $('#passwordupdate').val(userid.password);
       })
-      
- 
-
-      
+     
     }
+    
+
+
   </script>
 </body>
 
