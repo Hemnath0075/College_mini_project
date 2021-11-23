@@ -47,6 +47,37 @@ $user_data = check_login($con);
   </div>
 </div>
 
+  <!-- modal for update -->
+  <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update user</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="mb-3">
+              <label for="regno" class="form-label">Register Number</label>
+              <input type="Number"  class="form-control" id="regnoupdate" aria-describedby="emailHelp">
+      </div>
+            <label for="username" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" id="usernameupdate" aria-describedby="emailHelp">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="passwordupdate">
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="adduser()">Update</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <input type="hidden" id="hiddenupdateid">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- navbar and body of page -->
+
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -78,12 +109,15 @@ $user_data = check_login($con);
   <h1>Hello Welcome Mr/Mrs  <?php echo $user_data['username']; ?></h1>
 
   <div class="container">
-  <h1 class="text-center">LIST OF STUDENT DATA</h1>
+    <h1 class="text-center">LIST OF STUDENT DATA</h1>
 
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Add Student
-</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Student
+    </button>
+
+    <div class="my-3" id="studentTable"></div>
   </div>
+
 
  
  
@@ -98,6 +132,25 @@ $user_data = check_login($con);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
   <script>
+    // code for even after reloading the data should stay
+    $(document).ready(function(){
+      displaydata();
+    })
+
+    // function for the table view
+    function displaydata(){
+          var displaydata="true";
+          $.ajax({
+            url:"displaystudent.php",
+            type:'post',
+            data:{
+              displaysend:displaydata,
+            },
+            success:function(data,status){
+              $('#studentTable').html(data);
+            }
+          })
+    }
     function adduser(){
       var regno=$('#regno').val();
       var username=$('#username').val();
@@ -112,19 +165,37 @@ $user_data = check_login($con);
           passwordsend:password
         },
         success:function(data,status){
+          // console.log(status);
           // function to display data
-          console.log(status);
+          displaydata();
         }
       })
-
-
-
     }
+    function deleteuser(deleteid){
+      $.ajax({
+        url:"deletestudent.php",
+        type:"post",
+        data:{
+          deletedata:deleteid
+        },
+        success:function(data,status){
+            displaydata();
+        }
+      })
+    } 
 
+    function updateuser(updateid){
+      $('#hiddenupdateid').val(updateid);
+      // $('#updatemodal').modal('show');
+      $.post("update.php",{updateid:updateid},function(data,status){
+        var userid=JSON.parse(data);
+        $('regnoupdate').val(userid.regno);
+        $('usernameupdate').val(userid.username);
+        $('passwordupdate').val(userid.password);
+      })
 
-
-
-
+      
+    }
   </script>
 </body>
 
