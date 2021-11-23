@@ -24,7 +24,7 @@ if(isset($_POST['displaysend'])){
         <td>'.$username.'</td>
         <td>'.$password.'</td>
         <td>
-            <button class="btn btn-success onclick="updateuser('.$regno.')">Update</button>
+            <button class="btn btn-success onclick="updateuser('.$regno.')" data-bs-toggle="modal" data-bs-target="#updatemodal">Update</button>
             <button class="btn btn-danger" onclick="deleteuser('.$regno.')">Delete</button>
         </td>
         </tr>';
