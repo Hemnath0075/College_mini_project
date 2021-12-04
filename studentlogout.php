@@ -2,9 +2,11 @@
 
 session_start();
 
-if(isset($_SESSION['user_id']))
+if(isset($_SESSION['regno']))
 {
-	unset($_SESSION['user_id']);
+	unset($_SESSION['regno']);
+	session_unset();
+	session_destroy();
 
 }
 

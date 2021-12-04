@@ -15,7 +15,7 @@ function check_login($con){
 
 	// redirecting to login page
 
-	header("Location : login.php");
+	header("Location : stafflogin.php");
 	die; 
 
 }

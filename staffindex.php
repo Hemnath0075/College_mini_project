@@ -27,60 +27,27 @@ $user_data = check_login($con);
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-      <div class="mb-3">
-              <label for="regno" class="form-label">Register Number</label>
-              <input type="Number"  class="form-control" id="regno" aria-describedby="emailHelp">
-      </div>
-            <label for="username" class="form-label">Username</label>
-              <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" name="password" class="form-control" id="password">
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="adduser()">Submit</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
+      <form id="formid">
+        <div class="modal-body">
+        <div class="mb-3">
+                <label for="regno" class="form-label">Register Number</label>
+                <input type="Number"  class="form-control" id="regno" aria-describedby="emailHelp" autocomplete="off">
+        </div>
+              <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" autocomplete="off">
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" autocomplete="off">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="adduser()">Submit</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-  <!-- modal for update -->
-
-
-
-      <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-           
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Update user</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <div class="mb-3">
-                    <label for="regno" class="form-label">Register Number</label>
-                    <input type="Number"  class="form-control" id="regnoupdate" aria-describedby="emailHelp">
-            </div>
-                  <label for="username" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="usernameupdate" aria-describedby="emailHelp">
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="passwordupdate">
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              <input type="hidden" id="hiddenupdateid">
-            </div>
-            
-          </div>
-        </div>
-        </div>
- 
 
 <!-- navbar and body of page -->
 
@@ -97,7 +64,7 @@ $user_data = check_login($con);
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Marks-Entry</a>
+            <a class="nav-link" href="markentry.php">Marks-Entry</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Attendence</a>
@@ -137,6 +104,10 @@ $user_data = check_login($con);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   
   <script>
+    
+
+
+
     // code for even after reloading the data should stay
     $(document).ready(function(){
       displaydata();
