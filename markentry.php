@@ -114,7 +114,7 @@ if(isset($_POST['submit'])){
             echo "</table>";
 
             ?>
-</div>
+            </div>
 
 <h1 style="margin-top:30px;">CIA-2 MARKS </h1>
             <div  class="table tablemarks">
