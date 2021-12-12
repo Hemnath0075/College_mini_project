@@ -36,6 +36,7 @@ $id=$_SESSION['regno'];
     </script>
 </head>
 <body>
+  
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 		<a class="navbar-brand" href="#">Moodle Staff</a>
@@ -45,13 +46,13 @@ $id=$_SESSION['regno'];
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">Home</a>
+				<a class="nav-link active" aria-current="page" href="studentindex.php">Home</a>
 				</li>
 				<li class="nav-item">
 				<a class="nav-link" href="markview.php">Marks</a>
 				</li>
 				<li class="nav-item">
-				<a class="nav-link" href="#">Attendence</a>
+				<a class="nav-link" href="viewingattendence.php">Attendence</a>
 				</li>
 			</ul>
 			<form class="d-flex">

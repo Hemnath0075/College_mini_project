@@ -67,7 +67,7 @@ $user_data = check_login($con);
             <a class="nav-link" href="markentry.php">Marks-Entry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Attendence</a>
+          <a class="nav-link" href="markingattendence.php">Attendence</a>
           </li>
         </ul>
         <form class="d-flex">
