@@ -2,6 +2,10 @@
 session_start();
 include ('connection.php');
 $id=$_SESSION['regno'];
+include("studentFunctions.php");
+
+
+  $user_data=check_login($con);
 
 ?>
 
