@@ -4,9 +4,10 @@ include ('connection.php');
 
 if(isset($_POST['submit'])){
   $registerno=$_POST['registernumber'];
+  $subjectTitle=$_POST['subjectTitle'];
   $examtitle=$_POST['examtitle'];
   $mark=$_POST['mark'];
-  $sql="insert into `marks` (registerno,examtitle,mark) values ('$registerno','$examtitle','$mark')";
+  $sql="insert into `marks` (registerno,examtitle,mark,subject) values ('$registerno','$examtitle','$mark','$subjectTitle')";
   $result=mysqli_query($con,$sql);
   if($result){
     echo "sucess";
@@ -27,11 +28,13 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+      table, th, td {
+  border: 1px solid black;
+    } 
       .tablemarks > table{
         border: 2px solid black;
         width: 500px;
         margin-left: 20rem;
-        border-collapse: collapse;
 
       }
     </style>
@@ -67,7 +70,7 @@ if(isset($_POST['submit'])){
   </nav>
   <!-- form for mark entering -->
 
-  <form class="my-5" style="padding:20px; width: 600px; height: 280px; margin-left:20rem; border:2px solid black;" id="markentry" method="post">
+  <form class="my-5" style="padding:20px; width: 600px; height: 320px; margin-left:20rem; border:2px solid black;" id="markentry" method="post">
             <h3>Enter student Marks</h3>
             <div class="mb-3">
             <label for="regno" class="form-label">Register Number</label>
@@ -80,6 +83,14 @@ if(isset($_POST['submit'])){
                 }
               ?>
             </select>
+            </div>
+            <div class="mb-3">
+              <label for="subjecttitle" class="form-label">Exam-Title</label>
+              <select style="margin-left: 44px;width: 300px;" name="subjectTitle" id="subjectTitle">
+                <option value="AI">ARTIFICIAL INTELLIGENCE</option>
+                <option value="OS">OPERATING SYSTEM</option>
+                <option value="DBMS">DATABASE MANAGEMENT SYSTEMS</option>
+              </select>
             </div>
             <div class="mb-3">
               <label for="exam-title" class="form-label">Exam-Title</label>
@@ -97,73 +108,178 @@ if(isset($_POST['submit'])){
             <div class="d-grid gap-2">
               <button type="submit" name="submit" class="btn btn-primary ">Submit</button>
             </div>
+            
 
   </form>
-            <h1 style="margin-top:30px;">CIA-1 MARKS </h1>
-            <div  class="table tablemarks">
-            <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select * from `marks` where examtitle='CIA1'";
-            echo "<tr><th>REGISTER NO</th>
-            <th>MARKS</th></tr>";
-            $result=mysqli_query($con,$sql);
-            while($row=mysqli_fetch_array($result)){
-              echo "<tr><td>".$row['registerno']."</td><td>".$row['mark']."</td></tr>";
-            }
-            echo "</table>";
 
-            ?>
+  <!-- TABLE FOR ARTIFICIAL INTELLIGENCE MARKS -->
+            
+            <div class="table tablemarks">
+            <h1 style="margin-top:30px;">ARTIFICIAL INTELIGENCE</h1>
+              <?php
+              $table="table";
+              echo "<table class=$table>";
+              echo "<tr><th>REGISTER NO</th>
+              <th>CIA1</th><th>CIA2</th><th>CIA3</th><th>SA</th></tr>";
+              
+              $sqlregno="select regno from `userstudent`";
+              $resultregno=mysqli_query($con,$sqlregno);
+              
+              while($rowregno=mysqli_fetch_array($resultregno)){
+                $cia1mark=0;
+                $cia2mark=0;
+                $cia3mark=0;
+                $samark=0;
+                $regno=$rowregno[0];
+                $sqlcia1marks="select mark from `marks` where subject='AI' AND registerno=".$regno." AND examtitle='CIA1' LIMIT 1" ;
+                $resultcia1marks=mysqli_query($con,$sqlcia1marks);
+
+
+                $sqlcia2marks="select mark from `marks` where subject='AI' AND registerno=".$regno." AND examtitle='CIA2' LIMIT 1" ;
+                $resultcia2marks=mysqli_query($con,$sqlcia2marks);
+
+
+                $sqlcia3marks="select mark from `marks` where subject='AI' AND registerno=".$regno." AND examtitle='CIA3' LIMIT 1" ;
+                $resultcia3marks=mysqli_query($con,$sqlcia3marks);
+
+
+                $sqlsamarks="select mark from `marks` where subject='AI' AND registerno=".$regno." AND examtitle='SA' LIMIT 1" ;
+                $resultsamarks=mysqli_query($con,$sqlsamarks);
+                
+                while($rowcia1=mysqli_fetch_assoc($resultcia1marks)){
+                  $cia1mark=$rowcia1['mark'];
+                  
+                }
+                while($rowcia2=mysqli_fetch_assoc($resultcia2marks)){
+                  $cia2mark=$rowcia2['mark'];
+                  
+                }
+                while($rowcia3=mysqli_fetch_assoc($resultcia3marks)){
+                  $cia3mark=$rowcia3['mark'];
+                  
+                }
+                while($rowsa=mysqli_fetch_assoc($resultsamarks)){
+                  $samark=$rowsa['mark'];
+                  
+                }
+              echo "<tr><td>".$regno."</td><td>".$cia1mark."</td><td>".$cia2mark."</td><td>".$cia3mark."</td><td>".$samark."</td></tr>";
+              }
+              ?>
             </div>
+            
 
-<h1 style="margin-top:30px;">CIA-2 MARKS </h1>
-            <div  class="table tablemarks">
-            <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select * from `marks` where examtitle='CIA2'";
-            echo "<tr><th>REGISTER NO</th>
-            <th>MARKS</th></tr>";
-            $result=mysqli_query($con,$sql);
-            while($row=mysqli_fetch_array($result)){
-              echo "<tr><td>".$row['registerno']."</td><td>".$row['mark']."</td></tr>";
-            }
-            echo "</table>";
+<!-- TABLE FOR OPERATING SYSTEM MARKS -->
+           
+            <div class="table tablemarks">
+            
+              <?php
+              $table="table";
+              echo "<table class=$table>";
+              echo "<tr><th>REGISTER NO</th>
+              <th>CIA1</th><th>CIA2</th><th>CIA3</th><th>SA</th></tr>";
+              
+              $sqlregno="select regno from `userstudent`";
+              $resultregno=mysqli_query($con,$sqlregno);
+              
+              while($rowregno=mysqli_fetch_array($resultregno)){
+                $cia1mark=0;
+                $cia2mark=0;
+                $cia3mark=0;
+                $samark=0;
+                $regno=$rowregno[0];
+                $sqlcia1marks="select mark from `marks` where subject='OS' AND registerno=".$regno." AND examtitle='CIA1' LIMIT 1" ;
+                $resultcia1marks=mysqli_query($con,$sqlcia1marks);
 
-            ?>
-</div>
-<h1 style="margin-top:30px;">CIA-3 MARKS </h1>
-            <div  class="table tablemarks">
-            <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select * from `marks` where examtitle='CIA3'";
-            echo "<tr><th>REGISTER NO</th>
-            <th>MARKS</th></tr>";
-            $result=mysqli_query($con,$sql);
-            while($row=mysqli_fetch_array($result)){
-              echo "<tr><td>".$row['registerno']."</td><td>".$row['mark']."</td></tr>";
-            }
-            echo "</table>";
 
-            ?>
-</div>
+                $sqlcia2marks="select mark from `marks` where subject='OS' AND registerno=".$regno." AND examtitle='CIA2'LIMIT 1" ;
+                $resultcia2marks=mysqli_query($con,$sqlcia2marks);
 
-<h1 style="margin-top:30px;">SKILL ASSESMENT MARKS </h1>
-            <div  class="table tablemarks">
-            <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select * from `marks` where examtitle='SA'";
-            echo "<tr><th>REGISTER NO</th>
-            <th>MARKS</th></tr>";
-            $result=mysqli_query($con,$sql);
-            while($row=mysqli_fetch_array($result)){
-              echo "<tr><td>".$row['registerno']."</td><td>".$row['mark']."</td></tr>";
-            }
-            echo "</table>";
 
-            ?>
-</div>
+                $sqlcia3marks="select mark from `marks` where subject='OS' AND registerno=".$regno." AND examtitle='CIA3' LIMIT 1" ;
+                $resultcia3marks=mysqli_query($con,$sqlcia3marks);
+
+
+                $sqlsamarks="select mark from `marks` where subject='OS' AND registerno=".$regno." AND examtitle='SA' LIMIT 1";
+                $resultsamarks=mysqli_query($con,$sqlsamarks);
+                
+                while($rowcia1=mysqli_fetch_assoc($resultcia1marks)){
+                  $cia1mark=$rowcia1['mark'];
+                  
+                }
+                while($rowcia2=mysqli_fetch_assoc($resultcia2marks)){
+                  $cia2mark=$rowcia2['mark'];
+                  
+                }
+                while($rowcia3=mysqli_fetch_assoc($resultcia3marks)){
+                  $cia3mark=$rowcia3['mark'];
+                  
+                }
+                while($rowsa=mysqli_fetch_assoc($resultsamarks)){
+                  $samark=$rowsa['mark'];
+                  
+                }
+              echo "<tr><td>".$regno."</td><td>".$cia1mark."</td><td>".$cia2mark."</td><td>".$cia3mark."</td><td>".$samark."</td></tr>";
+              }
+              ?>
+            </div>
+            <h1 style="margin-top:30px;">OPERATING SYSTEM</h1>
+
+<!-- TABLE FOR DBMS MARKS -->
+
+            
+            <div class="table tablemarks">
+              <?php
+              $table="table";
+              echo "<table class=$table>";
+              echo "<tr><th>REGISTER NO</th>
+              <th>CIA1</th><th>CIA2</th><th>CIA3</th><th>SA</th></tr>";
+              
+              $sqlregno="select regno from `userstudent`";
+              $resultregno=mysqli_query($con,$sqlregno);
+              
+              while($rowregno=mysqli_fetch_array($resultregno)){
+                $cia1mark=0;
+                $cia2mark=0;
+                $cia3mark=0;
+                $samark=0;
+                $regno=$rowregno[0];
+                $sqlcia1marks="select mark from `marks` where subject='DBMS' AND registerno=".$regno." AND examtitle='CIA1' LIMIT 1" ;
+                $resultcia1marks=mysqli_query($con,$sqlcia1marks);
+
+
+                $sqlcia2marks="select mark from `marks` where subject='DBMS' AND registerno=".$regno." AND examtitle='CIA2' LIMIT 1" ;
+                $resultcia2marks=mysqli_query($con,$sqlcia2marks);
+
+
+                $sqlcia3marks="select mark from `marks` where subject='DBMS' AND registerno=".$regno." AND examtitle='CIA3' LIMIT 1" ;
+                $resultcia3marks=mysqli_query($con,$sqlcia3marks);
+
+
+                $sqlsamarks="select mark from `marks` where subject='DBMS' AND registerno=".$regno." AND examtitle='SA' LIMIT 1" ;
+                $resultsamarks=mysqli_query($con,$sqlsamarks);
+                
+                while($rowcia1=mysqli_fetch_assoc($resultcia1marks)){
+                  $cia1mark=$rowcia1['mark'];
+                  
+                }
+                while($rowcia2=mysqli_fetch_assoc($resultcia2marks)){
+                  $cia2mark=$rowcia2['mark'];
+                  
+                }
+                while($rowcia3=mysqli_fetch_assoc($resultcia3marks)){
+                  $cia3mark=$rowcia3['mark'];
+                  
+                }
+                while($rowsa=mysqli_fetch_assoc($resultsamarks)){
+                  $samark=$rowsa['mark'];
+                  
+                }
+              echo "<tr><td>".$regno."</td><td>".$cia1mark."</td><td>".$cia2mark."</td><td>".$cia3mark."</td><td>".$samark."</td></tr>";
+              }
+              ?>
+            </div>
+            <h1 style="margin-top:30px;">DATABSE MANAGEMENT SYSTEMS</h1>
+            
+
 </body>
 </html>

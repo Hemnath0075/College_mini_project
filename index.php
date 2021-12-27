@@ -16,11 +16,12 @@
         .divcontainer{
             width: 600px;
             height: 400px;
-            background-color: rgba(215, 202, 202, 0.74); 
-            backdrop-filter: blur(8px); 
-            -webkit-backdrop-filter: blur(8px);
-            border: 3px solid white;
+            background-color: rgba(220, 202, 202, 0.74); 
+            backdrop-filter: blur(2px); 
+            -webkit-backdrop-filter: blur(4px);
+            /* border: 3px solid white; */
             overflow: auto;
+            box-shadow: 3px 3px 3px #ccc
             
         }
         .heading1{

@@ -15,6 +15,11 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>student login</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<style>
+		table, th, td {
+  border: 1px solid black;
+    } 
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -46,7 +51,7 @@ session_start();
 
 	hello welcome <?php echo $user_data['username']; ?>
 	
-	<h1>TO DO LIST FOR STUDENTS</h1>
+	<h1>TO-DO LIST FOR STUDENTS</h1>
 	<form style="border: 2px solid black; width:50vw; margin-left:20rem; padding:10px;" method="post">
 	<div class="mb-3">
 		<label for="task">enter your task:</label>
@@ -77,9 +82,10 @@ session_start();
 
 // $days_between = ceil(abs($end - $start) / 86400);
 
-echo $days_between;
 		?>
-
+		<!-- TODO: 
+	1.BUTTON FOR COMPLETE THE TASK
+	2.if statements -->
 
 	</form>
 	<div class="container">
@@ -100,7 +106,7 @@ echo $days_between;
 	
 	while($row=mysqli_fetch_array($query)){
 		$end=strtotime($row['date']);
-		$days_between = ceil(abs($end - $start) / 86400);
+		$days_between = ceil(intval( $end-$start ) / 86400);
 		echo "<tr><td>".$row['task']."</td><td>".$row['taskdescription']."</td><td>".$days_between."</td></tr>";
 	}
 

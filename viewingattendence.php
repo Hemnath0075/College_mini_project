@@ -16,12 +16,12 @@ include("studentFunctions.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<style>
-      .tablemarks > table{
+    table, th, td {
+  border: 1px solid black;
+    } 
+      .table{
         border: 2px solid black;
-        width: 500px;
-        margin-left: 20rem;
-        border-collapse: collapse;
-
+        width: 80%;
       }
     </style>
 </head>
@@ -54,42 +54,51 @@ include("studentFunctions.php");
 	<marquee width="100%" direction="left" height="100px" style="color:red;">
 	Note: Minimum of 75% of attendence is mandatory for attending sem exams
 	</marquee>
-	<h1 style="margin-top:30px;">ARTIFICIAL INTELLIGENCE</h1>
-            <div  class="table tablemarks">
+
+          <div class="container-fluid info">
+            <ol style="list-style: none;">
+              <li><h4>1.Minimum of 75% of attendence is mandatory for attending sem exams</h4></li>
+              <li><h4>2.Attendence Will get locked in first 10 Minutes</h4></li>
+            </ol>
+          </div>
+          <br>
+          <br>
+	
+            <div  class="tablemarks">
             <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select regno from `attendence` where subname='AI' limit 5";
-            echo "<tr><th>REGISTER NO</th>
-            <th>ATTENDENCE percentage</th></tr>";
-            $result=mysqli_query($con,$sql);
+            // $table="table";
+            // echo "<table class=$table>";
+            
+            // echo "<tr><th>REGISTER NO</th>
+            // <th>ATTENDENCE percentage</th></tr>";
+            
            
-              $sqlquery1="select * from `attendence` where subname='AI' AND regno=".$_SESSION['regno'].";";
+              $sqlquery1="select * from `attendence` where subname='AI' AND regno=".$_SESSION['regno']."";
               $ress1=mysqli_query($con,$sqlquery1);
               $final1=mysqli_num_rows($ress1);
               
-              $sqlquery2="select * from `attendence` where subname='AI' AND regno=".$_SESSION['regno']." AND attendence='P';";
+              $sqlquery2="select * from `attendence` where subname='AI' AND regno=".$_SESSION['regno']." AND attendence='P'";
               $ress2=mysqli_query($con,$sqlquery2);
               $final2=mysqli_num_rows($ress2);
-              
-              $attendence=$final2/$final1*100;
-              echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
+              error_reporting(0);
+              $attendenceAI=$final2/$final1*100;
+              // echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
             
-            echo "</table>";
+            // echo "</table>";
 
             ?>
             </div>
 
 
-			<h1 style="margin-top:30px;">OPERATING SYSTEM</h1>
-            <div  class="table tablemarks">
+			
+            <div  class=" tablemarks">
             <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select regno from `attendence` where subname='OS' limit 5";
-            echo "<tr><th>REGISTER NO</th>
-            <th>ATTENDENCE percentage</th></tr>";
-            $result=mysqli_query($con,$sql);
+            // $table="table";
+            // echo "<table class=$table>";
+           
+            // echo "<tr><th>REGISTER NO</th>
+            // <th>ATTENDENCE percentage</th></tr>";
+            
            
               $sqlquery1="select * from `attendence` where subname='OS' AND regno=".$_SESSION['regno'].";";
               $ress1=mysqli_query($con,$sqlquery1);
@@ -98,25 +107,25 @@ include("studentFunctions.php");
               $sqlquery2="select * from `attendence` where subname='OS' AND regno=".$_SESSION['regno']." AND attendence='P';";
               $ress2=mysqli_query($con,$sqlquery2);
               $final2=mysqli_num_rows($ress2);
-              
-              $attendence=$final2/$final1*100;
-              echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
+              error_reporting(0);
+              $attendenceOS=$final2/$final1*100;
+              // echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
             
-            echo "</table>";
+            // echo "</table>";
 
             ?>
             </div>
 
 
-			<h1 style="margin-top:30px;">DBMS</h1>
-            <div  class="table tablemarks">
+			
+            <div  class=" tablemarks">
             <?php
-            $table="table";
-            echo "<table class=$table>";
-            $sql="select regno from `attendence` where subname='DBMS' limit 5";
-            echo "<tr><th>REGISTER NO</th>
-            <th>ATTENDENCE percentage</th></tr>";
-            $result=mysqli_query($con,$sql);
+            // $table="table";
+            // echo "<table class=$table>";
+           
+            // echo "<tr><th>REGISTER NO</th>
+            // <th>ATTENDENCE percentage</th></tr>";
+            
            
               $sqlquery1="select * from `attendence` where subname='DBMS' AND regno=".$_SESSION['regno'].";";
               $ress1=mysqli_query($con,$sqlquery1);
@@ -125,12 +134,23 @@ include("studentFunctions.php");
               $sqlquery2="select * from `attendence` where subname='DBMS' AND regno=".$_SESSION['regno']." AND attendence='P';";
               $ress2=mysqli_query($con,$sqlquery2);
               $final2=mysqli_num_rows($ress2);
-              
-              $attendence=$final2/$final1*100;
-              echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
+              error_reporting(0);
+              $attendenceDBMS=$final2/$final1*100;
+              // echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendence)."</td></tr>";
             
-            echo "</table>";
+            // echo "</table>";
 
+            ?>
+            </div>
+<!-- table for attendence for students -->
+            <div class="container">
+            <?php
+            $table="table";
+            echo "<table class=$table>";
+            echo "<tr><th>REGISTER NO</th><th>AI</th><th>OS</th><th>DBMS</th></tr>";
+            echo "<tr><td>".$_SESSION['regno']."</td><td>".intval($attendenceAI)."</td><td>".intval($attendenceOS)."</td><td>".intval($attendenceDBMS)."</td></tr>";
+            echo "</table>";
+            
             ?>
             </div>
 
