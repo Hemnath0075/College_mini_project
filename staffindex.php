@@ -69,6 +69,9 @@ $user_data = check_login($con);
           <li class="nav-item">
           <a class="nav-link" href="markingattendence.php">Attendence</a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link" href="pdfupload.php">PDFCONTENT</a>
+          </li>
         </ul>
         <form class="d-flex">
           <button class="btn btn-primary btn-outline-success"><a class="text-light" href="stafflogout.php">Logout</a></button>

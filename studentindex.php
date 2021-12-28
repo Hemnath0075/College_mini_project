@@ -1,9 +1,16 @@
 <?php
+
+
+
 session_start();
 
   include("connection.php");
   include("studentFunctions.php");
 
+//   if(isset($_POST['submit'])){
+// 	  $sql="delete from task where id=$id";
+// 	  $query=mysqli_query($con,$query);
+//   }
 
   $user_data=check_login($con);
 ?>
@@ -20,6 +27,14 @@ session_start();
   border: 1px solid black;
     } 
 	</style>
+	<script>
+		function deletefunc(){
+			<?php
+				$sql="delete from task where id=$id";
+				$query=mysqli_query($con,$query);
+			?>
+		}
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,6 +53,9 @@ session_start();
 				</li>
 				<li class="nav-item">
 				<a class="nav-link" href="viewingattendence.php">Attendence</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="pdfdownload.php">STUDY CONTENTS</a>
 				</li>
 			</ul>
 			<form class="d-flex">
@@ -76,17 +94,8 @@ session_start();
 		$sql="insert into `task` (task,taskdescription,date,regno) values('$task','$taskdescription','$date',$regno)";
 		$query=mysqli_query($con,$sql);
 		}
-// 		echo "Today is " . date("Y/m/d") . "<br>";
-// 		$start = strtotime('2021-01-20');
-// $end = strtotime('2021-01-01');
-
-// $days_between = ceil(abs($end - $start) / 86400);
-
 		?>
-		<!-- TODO: 
-	1.BUTTON FOR COMPLETE THE TASK
-	2.if statements -->
-
+	
 	</form>
 	<div class="container">
 	<?php
@@ -100,20 +109,29 @@ session_start();
 	<th>Task Description</th>
 	<th>Remaining Days</th>
 	<th>Status</th>
+	<th>Operations</th>
 	</tr>";
 	$sql="select * from `task` where regno=$regno";
 	$query=mysqli_query($con,$sql);
-	
+	$btn= `echo "<button class="btn btn-primary" onclick=deletefunc()>COMPLETED</button>"`;
 	while($row=mysqli_fetch_array($query)){
+		$id=$row['id'];
 		$end=strtotime($row['date']);
 		$days_between = ceil(intval( $end-$start ) / 86400);
-		echo "<tr><td>".$row['task']."</td><td>".$row['taskdescription']."</td><td>".$days_between."</td></tr>";
+		if($days_between>0){
+			$status="NOT COMPLETED";
+		}
+		else{
+			$status="OVERDUE";
+		}
+		echo "<tr><td>".$row['task']."</td><td>".$row['taskdescription']."</td><td>".$days_between."</td><td>".$status."</td><td>".$btn."</td></tr>";
 	}
 
 	
 
 
 	?>
+	
 </div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

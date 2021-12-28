@@ -2,6 +2,10 @@
 
 include ('connection.php');
 
+
+
+
+
 if(isset($_POST['submit'])){
   $registerno=$_POST['registernumber'];
   $subjectTitle=$_POST['subjectTitle'];
@@ -44,7 +48,7 @@ if(isset($_POST['submit'])){
     <!-- navbar and body of page -->
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Moodle Student</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,13 +57,16 @@ if(isset($_POST['submit'])){
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="staffindex.php">Home</a>
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="markentry.php">Marks-Entry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="markingattendence.php">Attendence</a>
+          <a class="nav-link" href="markingattendence.php">Attendence</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="pdfupload.php">PDFCONTENT</a>
           </li>
         </ul>
         <form class="d-flex">

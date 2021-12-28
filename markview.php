@@ -83,6 +83,9 @@ include("studentFunctions.php");
 				<li class="nav-item">
 				<a class="nav-link" href="viewingattendence.php">Attendence</a>
 				</li>
+        <li class="nav-item">
+				<a class="nav-link" href="pdfdownload.php">STUDY CONTENTS</a>
+				</li>
 			</ul>
 			<form class="d-flex">
 				<button class="btn btn-primary btn-outline-success"><a class="text-light" href="studentlogout.php">Logout</a></button>
