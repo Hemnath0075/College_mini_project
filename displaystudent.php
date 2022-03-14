@@ -9,7 +9,6 @@ if(isset($_POST['displaysend'])){
       <tr class="table-dark">
         <th scope="col">Register Number</th>
         <th scope="col">Username</th>
-        <th scope="col">Password</th>
         <th scope="col">Operation</th>
       </tr>
     </thead>';
@@ -18,11 +17,9 @@ if(isset($_POST['displaysend'])){
     while($row=mysqli_fetch_assoc($result)){
         $regno=$row['regno'];
         $username=$row['username'];
-        $password=$row['password'];
         $table.='<tr>
         <td scope="row">'.$regno.'</td> 
         <td>'.$username.'</td>
-        <td>'.$password.'</td>
         <td>
             <button class="btn btn-success data-bs-toggle="modal" data-bs-target="#updatemodal"><a href="updatestudentdetail.php?updateid='.$regno.'" class="text-light">Update</a></button>
             <button class="btn btn-danger" onclick="deleteuser('.$regno.')">Delete</button>

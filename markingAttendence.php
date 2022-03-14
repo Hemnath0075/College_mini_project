@@ -16,6 +16,7 @@ if(isset($_POST['submit'])){
                     $sqlquery="insert into `attendence` (subname,date,regno,attendence) values ('$subname','$date','$res','$att')";
                     $sqlrun=mysqli_query($con,$sqlquery);
     }
+    
 }
 
 
@@ -109,7 +110,8 @@ if(isset($_POST['submit'])){
     </form>
     <h1 style="margin-top:30px;">ARTIFICIAL INTELLIGENCE</h1>
             <div  class="table tablemarks">
-            <?php
+              <?php
+              error_reporting(E_ERROR | E_PARSE);
             $table="table";
             echo "<table class=$table>";
             $sql="select regno from `userstudent`";

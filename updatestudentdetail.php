@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
     }
 }
 else{
-    echo "starting eh error";
+    echo "error";
 }
 
 ?>

@@ -7,12 +7,14 @@ session_start();
   include("connection.php");
   include("studentFunctions.php");
 
-//   if(isset($_POST['submit'])){
+//   if(isset($_POST['deletesubmit'])){
 // 	  $sql="delete from task where id=$id";
-// 	  $query=mysqli_query($con,$query);
+// 	  $query=mysqli_query($con,$sql);
+// 	  if($query)
 //   }
 
   $user_data=check_login($con);
+  
 ?>
 
 <!DOCTYPE html>
@@ -28,12 +30,19 @@ session_start();
     } 
 	</style>
 	<script>
+		// function deletefunc(){
+		// 	<?php
+		// 	echo ('delete function clicked');
+		// 	$sql="delete from task where id=$id";
+		// 	$query=mysqli_query($con,$sql);
+		// 	?>
+		// }
 		function deletefunc(){
-			<?php
-				$sql="delete from task where id=$id";
-				$query=mysqli_query($con,$query);
-			?>
-		}
+		// alert('hi');
+		<?php
+        echo('deleteclicked');
+		?>
+	}
 	</script>
 </head>
 <body>
@@ -67,7 +76,7 @@ session_start();
 
 	<br>
 
-	hello welcome <?php echo $user_data['username']; ?>
+	<h1>Hello welcome <?php echo $user_data['username']; ?></h1>
 	
 	<h1>TO-DO LIST FOR STUDENTS</h1>
 	<form style="border: 2px solid black; width:50vw; margin-left:20rem; padding:10px;" method="post">
@@ -97,12 +106,14 @@ session_start();
 		?>
 	
 	</form>
+	<br>
 	<div class="container">
 	<?php
+	
 	$table="table";
 	$regno=$_SESSION['regno'];
 	$start =strtotime(date("Y-m-d"));
-	echo $start;
+	// echo $start;
 	echo "<table class=$table>";
 	echo "<tr>
 	<th>Task Name</th>
@@ -113,7 +124,7 @@ session_start();
 	</tr>";
 	$sql="select * from `task` where regno=$regno";
 	$query=mysqli_query($con,$sql);
-	$btn= `echo "<button class="btn btn-primary" onclick=deletefunc()>COMPLETED</button>"`;
+	// $btn= `echo "<button class="btn btn-primary" onclick=deletefunc()>COMPLETED</button>"`;
 	while($row=mysqli_fetch_array($query)){
 		$id=$row['id'];
 		$end=strtotime($row['date']);
@@ -124,7 +135,7 @@ session_start();
 		else{
 			$status="OVERDUE";
 		}
-		echo "<tr><td>".$row['task']."</td><td>".$row['taskdescription']."</td><td>".$days_between."</td><td>".$status."</td><td>".$btn."</td></tr>";
+		echo "<tr><td>".$row['task']."</td><td>".$row['taskdescription']."</td><td>".$days_between."</td><td>".$status."</td><td>".`echo "<button class="btn btn-primary" onClick="deletefunc()">COMPLETED</button>"`."</td></tr>";
 	}
 
 	

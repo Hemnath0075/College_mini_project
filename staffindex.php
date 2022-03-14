@@ -82,7 +82,7 @@ $user_data = check_login($con);
 
   <br>
 
-  <h1>Hello Welcome Mr/Mrs  <?php echo $user_data['username']; ?></h1>
+  <h1>Hello Welcome Mr.<?php echo $user_data['username']; ?></h1>
 
   <div class="container">
     <h1 class="text-center">LIST OF STUDENT DATA</h1>
